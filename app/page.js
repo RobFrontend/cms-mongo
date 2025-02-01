@@ -1,101 +1,77 @@
 import Image from "next/image";
+import Link from "next/link";
+import { getCms } from "@/lib/mongo/cms";
 
-export default function Home() {
+async function fetchCms() {
+  const { cms } = await getCms();
+  if (!cms) console.log("Failed to fetch CMS in HOME");
+  return cms;
+}
+
+export default async function Home() {
+  const cms = await fetchCms();
+  const data = cms[0];
+
+  if (!data)
+    return (
+      <section className="min-h-screen bg-slate-800 text-slate-100">
+        <h1>Loading...</h1>
+      </section>
+    );
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <>
+      <section className="min-h-screen  text-slate-100 grid content-center">
+        <nav className="absolute top-4 right-4">
+          <Link
+            href="/cms"
+            className="text-xl bg-slate-100 text-slate-800 px-4 py-2 hover:opacity-75 transition-all duration-300"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            Panel Edycji
+          </Link>
+        </nav>
+        <div className="text-center">
+          <h1 className="text-7xl uppercase">{data.heroH1}</h1>
+          <h2 className="text-6xl">{data.heroH2}</h2>
+          <div className="flex gap-8 justify-center text-2xl py-8 ">
+            <Link
+              href={data.herobtn1url}
+              className="px-6 py-4 border-slate-50 border-2 hover:opacity-75 transition-all duration-300"
+            >
+              {data.herobtn1}
+            </Link>
+            <Link
+              href={data.herobtn2url}
+              className="px-6 py-4 border-slate-50 border-2 bg-slate-50 text-slate-800 hover:opacity-75 transition-all duration-300"
+            >
+              {data.herobtn2}
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+        <Image
+          src={`${data.herokv}`}
+          fill
+          objectFit="cover"
+          objectPosition="center"
+          alt="herokv"
+          className="-z-10"
+        />
+      </section>
+      <section className="text-slate-800">
+        <div className="max-w-[1200px] mx-auto my-0">
+          <h2 className="text-2xl">{data.abouth2}</h2>
+          <div className="flex gap-8 p-8">
+            <Image src={data.aboutkv} width={300} height={1000} alt="aboutkv" />
+            <div className="grid content-center">
+              <p className="text-lg text-center">{data.aboutdesc}</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer className="pb-8 text-slate-800">
+        <p className="text-center">
+          &copy; {new Date().getFullYear()} {data.footer}
+        </p>
       </footer>
-    </div>
+    </>
   );
 }
