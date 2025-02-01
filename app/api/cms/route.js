@@ -1,4 +1,5 @@
 import { getCms, updateCms } from "@/lib/mongo/cms";
+import { revalidatePath } from "next/cache";
 
 export async function GET(req) {
   try {
@@ -18,7 +19,7 @@ export async function PATCH(req) {
     if (!updatedData) {
       return Response.json({ error: "No data to Update" }, { status: 400 });
     }
-
+    revalidatePath("/");
     const succes = await updateCms(updatedData);
 
     if (!succes) {

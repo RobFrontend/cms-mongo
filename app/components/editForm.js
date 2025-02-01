@@ -32,7 +32,8 @@ function EditForm({
     e.preventDefault();
 
     try {
-      const res = await fetch("https://test-cms-grabcode.vercel.app/api/cms", {
+      // const res = await fetch("https://test-cms-grabcode.vercel.app/api/cms", {
+      const res = await fetch("api/cms", {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
