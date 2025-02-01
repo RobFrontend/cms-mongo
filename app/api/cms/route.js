@@ -5,7 +5,8 @@ export async function GET(req) {
   try {
     const { cms, error } = await getCms();
     if (error) throw new Error(error);
-
+    revalidatePath("/");
+    revalidatePath("/cms");
     return Response.json({ cms });
   } catch (err) {
     return Response.json({ error: err.message }, { status: 500 });
@@ -19,7 +20,8 @@ export async function PATCH(req) {
     if (!updatedData) {
       return Response.json({ error: "No data to Update" }, { status: 400 });
     }
-    revalidatePath("/", "/cms");
+    revalidatePath("/");
+    revalidatePath("/cms");
     const succes = await updateCms(updatedData);
 
     if (!succes) {
