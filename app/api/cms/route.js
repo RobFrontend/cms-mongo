@@ -19,7 +19,7 @@ export async function PATCH(req) {
     if (!updatedData) {
       return Response.json({ error: "No data to Update" }, { status: 400 });
     }
-    revalidatePath("/");
+    revalidatePath("/", "/cms");
     const succes = await updateCms(updatedData);
 
     if (!succes) {
