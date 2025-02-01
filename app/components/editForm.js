@@ -63,9 +63,14 @@ function EditForm({
   }
 
   return (
-    <form className="max-w-[90%] grid mx-auto gap-8" onSubmit={handleSubmit}>
+    <form
+      className="max-w-[90%] grid mx-auto gap-8 max-md:w-full max-md:text-sm"
+      onSubmit={handleSubmit}
+    >
       <div className="grid gap-4">
-        <h2 className="text-2xl text-center mt-4">Sekcja 1 HERO</h2>
+        <h2 className="text-2xl max-md:text-lg text-center mt-4">
+          Sekcja 1 HERO
+        </h2>
         <div className="grid gap-1 shadowbox">
           <label>Nagłówek 1</label>
           <textarea
@@ -82,15 +87,15 @@ function EditForm({
             onChange={(e) => setnewHeroH2(e.target.value)}
           ></textarea>
         </div>
-        <div className="flex gap-4 shadowbox ">
-          <label>Tekst przycnewku 1</label>
+        <div className="flex gap-4 shadowbox max-md:flex-col">
+          <label>Tekst przycisku 1</label>
           <textarea
             placeholder={herobtn1}
             value={newHeroBtn1}
             onChange={(e) => setnewHeroBtn1(e.target.value)}
           ></textarea>
 
-          <label>Link do przycnewku 1</label>
+          <label>Link do przycisku 1</label>
           <textarea
             className="w-full"
             placeholder={herobtn1url}
@@ -98,14 +103,14 @@ function EditForm({
             onChange={(e) => setnewHeroBtn1Url(e.target.value)}
           ></textarea>
         </div>
-        <div className="flex gap-4 shadowbox">
-          <label>Tekst przycnewku 2</label>
+        <div className="flex gap-4 shadowbox max-md:flex-col">
+          <label>Tekst przycisku 2</label>
           <textarea
             placeholder={herobtn2}
             value={newHeroBtn2}
             onChange={(e) => setnewHeroBtn2(e.target.value)}
           ></textarea>
-          <label>Link do przycnewku 2</label>
+          <label>Link do przycisku 2</label>
           <textarea
             className="w-full"
             placeholder={herobtn2url}
@@ -123,7 +128,7 @@ function EditForm({
         </div>
       </div>
       <div className="grid gap-4 ">
-        <h2 className="text-2xl text-center mt-8">Sekcja 2</h2>
+        <h2 className="text-2xl max-md:text-lg text-center mt-8">Sekcja 2</h2>
         <div className="grid gap-1 shadowbox">
           <label>Tytuł sekcji 2</label>
           <textarea
@@ -151,7 +156,7 @@ function EditForm({
         </div>
       </div>
       <div className="grid gap-1">
-        <h2 className="text-2xl text-center mt-8">Stopka</h2>
+        <h2 className="text-2xl max-md:text-lg text-center mt-8">Stopka</h2>
         <label>Tekst stopki</label>
         <textarea
           placeholder={footer}
@@ -162,7 +167,7 @@ function EditForm({
 
       <button
         type="submit"
-        className="px-6 py-3 bg-slate-900 text-xl text-slate-100 w-fit justify-self-center"
+        className="px-6 py-3 bg-slate-900 text-xl text-slate-100 w-fit justify-self-center max-md:text-lg"
       >
         Save Changes
       </button>

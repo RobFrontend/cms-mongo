@@ -31,11 +31,11 @@ async function Page() {
       </section>
     );
   return (
-    <div className="bg-slate-400 min-h-screen p-8">
+    <div className="bg-slate-400 min-h-screen p-8 max-md:px-2">
       <nav className="absolute top-4 right-4">
         <Link
           href="/"
-          className="text-xl bg-slate-100 text-slate-800 px-4 py-2 hover:opacity-75 transition-all duration-300"
+          className="text-xl bg-slate-100 text-slate-800 px-4 py-2 hover:opacity-75 transition-all duration-300 max-xl:text-lg max-md:text-base"
         >
           Powrót na stronę
         </Link>
