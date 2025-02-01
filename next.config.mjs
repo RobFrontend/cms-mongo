@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["images.unsplash.com"], // Dodaj Unsplash do dozwolonych domen
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**", // Zezwala na każdy host
+      },
+    ],
   },
 };
 
