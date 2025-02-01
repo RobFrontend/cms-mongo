@@ -1,7 +1,7 @@
 import { getCms } from "@/lib/mongo/cms";
 import Link from "next/link";
 import EditForm from "../components/editForm";
-
+export const revalidate = 15;
 async function fetchCms() {
   const { cms } = await getCms();
   if (!cms) console.log("Failed to fetch CMS in HOME");

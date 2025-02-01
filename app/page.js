@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCms } from "@/lib/mongo/cms";
-
+export const revalidate = 15;
 async function fetchCms() {
   const { cms } = await getCms();
   if (!cms) console.log("Failed to fetch CMS in HOME");
