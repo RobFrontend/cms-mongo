@@ -169,7 +169,7 @@ function EditForm({
         type="submit"
         className="px-6 py-3 bg-slate-900 text-xl text-slate-100 w-fit justify-self-center max-md:text-lg"
       >
-        Save Changes
+        Zapisz zmiany
       </button>
     </form>
   );
