@@ -171,6 +171,7 @@ function EditForm({
       >
         Zapisz zmiany
       </button>
+      <p>Odśwież stronę po paru sekundach od zapisania</p>
     </form>
   );
 }
